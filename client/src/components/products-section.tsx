@@ -102,9 +102,40 @@ export function ProductsSection() {
                   </span>
                   <button 
                     onClick={() => {
-                      console.log('Adding to cart:', product.name);
+                      // Add to cart functionality - using the product data
+                      const cartItem = {
+                        id: product.id,
+                        name: product.name,
+                        price: parseFloat(product.price),
+                        image: product.image,
+                        quantity: 1
+                      };
+                      
+                      // Store in localStorage for cart persistence
+                      const existingCart = JSON.parse(localStorage.getItem('cart') || '[]');
+                      const existingItemIndex = existingCart.findIndex((item: any) => item.id === product.id);
+                      
+                      if (existingItemIndex > -1) {
+                        existingCart[existingItemIndex].quantity += 1;
+                      } else {
+                        existingCart.push(cartItem);
+                      }
+                      
+                      localStorage.setItem('cart', JSON.stringify(existingCart));
+                      
+                      // Visual feedback
+                      const button = event?.target as HTMLButtonElement;
+                      const originalText = button.textContent;
+                      button.textContent = 'Added!';
+                      button.classList.add('bg-green-500');
+                      setTimeout(() => {
+                        button.textContent = originalText;
+                        button.classList.remove('bg-green-500');
+                      }, 1500);
+                      
+                      console.log('Added to cart:', product.name, '₹' + parseFloat(product.price).toLocaleString('en-IN'));
                     }}
-                    className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white px-6 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                    className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white px-6 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95"
                   >
                     Add to Cart
                   </button>

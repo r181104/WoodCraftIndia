@@ -44,29 +44,29 @@ export function FloatingNavigation({ onCartOpen }: FloatingNavigationProps) {
       icon: Home,
       label: 'Home',
       section: 'hero',
-      color: 'bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700',
-      shadow: 'shadow-blue-500/30'
+      color: 'bg-gradient-to-r from-amber-600 via-wood-dark to-amber-700 hover:from-amber-700 hover:via-amber-800 hover:to-wood-dark',
+      shadow: 'shadow-amber-500/40'
     },
     {
       icon: Package,
       label: 'Products',
       section: 'products', 
-      color: 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700',
-      shadow: 'shadow-green-500/30'
+      color: 'bg-gradient-to-r from-wood-dark via-amber-700 to-wood-dark hover:from-amber-700 hover:via-wood-dark hover:to-amber-700',
+      shadow: 'shadow-wood-dark/40'
     },
     {
       icon: Hammer,
       label: 'Custom Orders',
-      section: 'custom',
-      color: 'bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700',
-      shadow: 'shadow-orange-500/30'
+      section: 'custom-orders',
+      color: 'bg-gradient-to-r from-amber-700 via-wood-dark to-amber-800 hover:from-wood-dark hover:via-amber-800 hover:to-amber-900',
+      shadow: 'shadow-amber-600/40'
     },
     {
       icon: Phone,
       label: 'Contact',
       section: 'contact',
-      color: 'bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700',
-      shadow: 'shadow-purple-500/30'
+      color: 'bg-gradient-to-r from-wood-dark via-amber-800 to-wood-dark hover:from-amber-800 hover:via-wood-dark hover:to-amber-900',
+      shadow: 'shadow-wood-medium/40'
     }
   ];
 
@@ -119,21 +119,27 @@ export function FloatingNavigation({ onCartOpen }: FloatingNavigationProps) {
                 <Button
                   size="lg"
                   onClick={() => scrollToSection(item.section)}
-                  className={`w-14 h-14 rounded-full ${item.color} text-white shadow-xl hover:shadow-2xl ${item.shadow} transition-all duration-300 hover:scale-110 group border border-white/20 backdrop-blur-sm`}
+                  className={`w-16 h-16 rounded-full ${item.color} text-white shadow-2xl hover:shadow-3xl ${item.shadow} transition-all duration-500 hover:scale-110 group border-2 border-amber-300/30 backdrop-blur-sm relative overflow-hidden`}
                   data-testid={`floating-nav-${item.section}`}
                 >
-                  <item.icon className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
-                  <div className="absolute inset-0 rounded-full bg-white/10 group-hover:bg-white/20 transition-all duration-300"></div>
+                  <item.icon className="w-7 h-7 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 relative z-10" />
+                  
+                  {/* Premium Shine Effect */}
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-300/40 via-transparent to-amber-600/20 group-hover:from-amber-200/60 group-hover:to-amber-500/40 transition-all duration-500"></div>
+                  
+                  {/* Floating Glow */}
+                  <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-amber-500/0 via-amber-400/20 to-amber-500/0 group-hover:from-amber-400/30 group-hover:via-amber-300/40 group-hover:to-amber-400/30 transition-all duration-500 blur-lg"></div>
                 </Button>
               </TooltipTrigger>
-              <TooltipContent side="left" className="bg-black/90 text-white border border-gray-600/20 shadow-xl backdrop-blur-sm">
-                <p className="font-semibold">{item.label}</p>
+              <TooltipContent side="left" className="bg-gradient-to-r from-wood-dark to-amber-900 text-amber-100 border border-amber-500/30 shadow-2xl backdrop-blur-sm rounded-lg px-4 py-2">
+                <p className="font-bold text-lg">{item.label}</p>
+                <p className="text-xs text-amber-200 opacity-80">Click to navigate</p>
               </TooltipContent>
             </Tooltip>
           </div>
         ))}
 
-        {/* Scroll to Top Button */}
+        {/* Enhanced Scroll to Top Button */}
         <div style={{ 
           animationDelay: '400ms',
           transform: `translateY(${isVisible ? 0 : 20}px)`,
@@ -144,15 +150,23 @@ export function FloatingNavigation({ onCartOpen }: FloatingNavigationProps) {
             <TooltipTrigger asChild>
               <Button
                 size="lg"
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="w-12 h-12 rounded-full bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group border border-white/20"
-                data-testid="scroll-to-top"
+                onClick={() => {
+                  scrollToSection('hero');
+                  setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+                }}
+                className="w-16 h-16 rounded-full bg-gradient-to-r from-wood-dark via-amber-900 to-wood-dark hover:from-amber-800 hover:via-wood-dark hover:to-amber-800 text-amber-100 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-110 group border-2 border-amber-400/40 relative overflow-hidden animate-pulse hover:animate-none"
+                data-testid="back-to-top-btn"
               >
-                <div className="w-0 h-0 border-l-4 border-r-4 border-b-6 border-transparent border-b-white group-hover:scale-110 transition-transform duration-300"></div>
+                <svg className="w-7 h-7 group-hover:scale-125 group-hover:-translate-y-1 transition-all duration-500 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                </svg>
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-300/30 via-transparent to-amber-600/20 group-hover:from-amber-200/50 group-hover:to-amber-500/30 transition-all duration-500"></div>
+                <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-amber-500/0 via-amber-400/15 to-amber-500/0 group-hover:from-amber-400/25 group-hover:via-amber-300/35 group-hover:to-amber-400/25 transition-all duration-500 blur-lg"></div>
               </Button>
             </TooltipTrigger>
-            <TooltipContent side="left" className="bg-black/90 text-white border border-gray-600/20 shadow-xl backdrop-blur-sm">
-              <p className="font-semibold">Back to Top</p>
+            <TooltipContent side="left" className="bg-gradient-to-r from-wood-dark to-amber-900 text-amber-100 border border-amber-500/30 shadow-2xl backdrop-blur-sm rounded-lg px-4 py-2">
+              <p className="font-bold text-lg">Back to Top</p>
+              <p className="text-xs text-amber-200 opacity-80">Return to hero section</p>
             </TooltipContent>
           </Tooltip>
         </div>
