@@ -79,22 +79,20 @@ export function ProductsSection() {
             ))}
           </div>
         ) : (
-          <AnimatedSection animation="fadeInUp" delay={400}>
-            <div 
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
-              data-testid="products-grid"
-            >
-              {filteredProducts.map((product, index) => (
-                <div 
-                  key={product.id}
-                  className="animate-zoom-in card-hover"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <ProductCard product={product} />
-                </div>
-              ))}
-            </div>
-          </AnimatedSection>
+          <div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+            data-testid="products-grid"
+          >
+            {filteredProducts.map((product, index) => (
+              <div 
+                key={product.id}
+                className="animate-on-scroll-scale card-hover"
+                style={{ transitionDelay: `${index * 0.08}s` }}
+              >
+                <ProductCard product={product} />
+              </div>
+            ))}
+          </div>
         )}
 
         {/* Load More Button */}

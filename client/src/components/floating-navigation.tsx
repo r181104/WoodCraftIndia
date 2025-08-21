@@ -53,7 +53,7 @@ export function FloatingNavigation() {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed right-6 bottom-6 z-50 space-y-3 animate-fade-in-up">
+    <div className="fixed right-6 bottom-6 z-50 space-y-3 floating-nav">
       {/* Cart Button */}
       <div className="relative">
         <Tooltip>

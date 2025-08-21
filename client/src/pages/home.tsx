@@ -7,14 +7,18 @@ import { ContactSection } from '@/components/contact-section';
 import { ShoppingCart } from '@/components/shopping-cart';
 import { FloatingNavigation } from '@/components/floating-navigation';
 import { initScrollAnimations, addPageLoadAnimations } from '@/lib/scroll-animations';
+import { initParallaxScroll, initSmoothScrolling, addScrollRevealEffects } from '@/lib/parallax-scroll';
 
 export default function Home() {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
-    // Initialize animations
+    // Initialize all animation systems
     addPageLoadAnimations();
     const cleanupScrollAnimations = initScrollAnimations();
+    const cleanupParallax = initParallaxScroll();
+    const cleanupRevealEffects = addScrollRevealEffects();
+    initSmoothScrolling();
     
     // Close cart on escape key
     const handleEscape = (e: KeyboardEvent) => {
@@ -27,6 +31,8 @@ export default function Home() {
     return () => {
       document.removeEventListener('keydown', handleEscape);
       cleanupScrollAnimations();
+      cleanupParallax();
+      cleanupRevealEffects();
     };
   }, []);
 

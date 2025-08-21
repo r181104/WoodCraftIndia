@@ -114,11 +114,11 @@ export function CustomCalculator() {
   return (
     <section id="custom" className="py-20 bg-white">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-wood-dark mb-4 animate-slide-in-left">
+        <div className="text-center mb-16 animate-on-scroll">
+          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-wood-dark mb-4">
             Custom Order Calculator
           </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto animate-slide-in-right">
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
             Get an instant estimate for your custom woodwork project
           </p>
         </div>
@@ -126,7 +126,7 @@ export function CustomCalculator() {
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Calculator Form */}
-            <div className="animate-on-scroll">
+            <div className="animate-on-scroll-left">
               <Card className="bg-cream shadow-lg card-hover">
                 <CardHeader>
                   <CardTitle className="font-playfair text-2xl text-wood-dark">
@@ -264,8 +264,8 @@ export function CustomCalculator() {
             </div>
 
             {/* Estimate Display */}
-            <div className="animate-on-scroll" style={{ animationDelay: '0.2s' }}>
-              <Card className="bg-gradient-to-br from-walnut to-teak text-white shadow-lg">
+            <div className="animate-on-scroll-right" style={{ transitionDelay: '0.3s' }}>
+              <Card className="bg-gradient-to-br from-walnut to-teak text-white shadow-lg card-hover">
               <CardHeader>
                 <CardTitle className="font-playfair text-2xl">Project Estimate</CardTitle>
               </CardHeader>
