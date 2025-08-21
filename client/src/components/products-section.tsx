@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
 import { ProductCard } from './product-card';
 import { AnimatedSection } from '@/components/ui/animated-section';
-import { Product } from '@shared/schema';
+import { products, Product } from '@/data/products';
 import { cn } from '@/lib/utils';
 
 const categories = [
@@ -15,10 +14,6 @@ const categories = [
 
 export function ProductsSection() {
   const [activeFilter, setActiveFilter] = useState('all');
-  
-  const { data: products = [], isLoading } = useQuery<Product[]>({
-    queryKey: ['/api/products'],
-  });
 
   const filteredProducts = activeFilter === 'all' 
     ? products 
@@ -112,25 +107,28 @@ export function ProductsSection() {
                 
                 <div className="flex items-center mb-4">
                   <div className="flex text-amber-500 text-lg">
-                    {'★'.repeat(Math.floor(parseFloat(product.rating || '5')))}
-                    {'☆'.repeat(5 - Math.floor(parseFloat(product.rating || '5')))}
+                    {'★'.repeat(5)}
                   </div>
-                  <span className="text-xs text-gray-500 ml-2 font-medium">
+                  <span className="text-xs ml-2 font-medium" style={{ color: '#deb887' }}>
                     ({Math.floor(Math.random() * 50) + 10} reviews)
                   </span>
                 </div>
                 
                 <div className="flex items-center justify-between">
-                  <span className="text-2xl font-bold bg-gradient-to-r from-wood-dark to-amber-700 bg-clip-text text-transparent">
-                    ₹{parseFloat(product.price).toLocaleString('en-IN')}
+                  <span className="text-2xl font-bold" style={{ 
+                    background: 'linear-gradient(135deg, #fbbf24, #f59e0b)', 
+                    WebkitBackgroundClip: 'text', 
+                    WebkitTextFillColor: 'transparent' 
+                  }}>
+                    ₹{product.price.toLocaleString('en-IN')}
                   </span>
                   <button 
-                    onClick={() => {
+                    onClick={(event) => {
                       // Add to cart functionality - using the product data
                       const cartItem = {
                         id: product.id,
                         name: product.name,
-                        price: parseFloat(product.price),
+                        price: product.price,
                         image: product.image,
                         quantity: 1
                       };
@@ -148,16 +146,16 @@ export function ProductsSection() {
                       localStorage.setItem('cart', JSON.stringify(existingCart));
                       
                       // Visual feedback
-                      const button = event?.target as HTMLButtonElement;
+                      const button = event.target as HTMLButtonElement;
                       const originalText = button.textContent;
                       button.textContent = 'Added!';
-                      button.classList.add('bg-green-500');
+                      button.style.background = 'linear-gradient(135deg, #10b981, #059669)';
                       setTimeout(() => {
                         button.textContent = originalText;
-                        button.classList.remove('bg-green-500');
+                        button.style.background = '';
                       }, 1500);
                       
-                      console.log('Added to cart:', product.name, '₹' + parseFloat(product.price).toLocaleString('en-IN'));
+                      console.log('Added to cart:', product.name, '₹' + product.price.toLocaleString('en-IN'));
                     }}
                     className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white px-6 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95"
                   >

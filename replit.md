@@ -1,10 +1,12 @@
 # Overview
 
-Artisan Woods is a full-stack e-commerce web application for a traditional Indian woodworking business. The application showcases handcrafted wooden furniture and home decor items, featuring a product catalog, custom quote calculator, contact forms, and shopping cart functionality. Built with modern web technologies, it combines a React frontend with an Express backend, emphasizing craftsmanship aesthetics and user-friendly design.
+Artisan Woods is a standalone e-commerce website for a traditional Indian woodworking business. The application showcases handcrafted wooden furniture and home decor items, featuring a product catalog, custom quote calculator, contact forms, and shopping cart functionality. Built with modern web technologies using React frontend with no backend dependencies, emphasizing craftsmanship aesthetics and user-friendly design. **Now deployment-ready for GitHub Pages at https://r181104.github.io/WoodCraftIndia/**
 
 # User Preferences
 
 Preferred communication style: Simple, everyday language.
+Deployment target: GitHub Pages at https://r181104.github.io/WoodCraftIndia/
+Requirements: Standalone deployment without Replit dependencies, human-written appearance, clean file structure for easy deployment.
 
 # System Architecture
 

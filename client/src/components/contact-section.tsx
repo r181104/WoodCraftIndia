@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useMutation } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -8,8 +7,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import { MapPin, Phone, Mail, Clock, Send, Facebook, Instagram, Youtube } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { apiRequest } from '@/lib/queryClient';
-import { ContactFormData } from '@/types';
+
+interface ContactFormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  inquiryType: string;
+  message: string;
+}
 
 const contactInfo = [
   {
@@ -83,34 +89,9 @@ Please contact me to discuss this custom project in detail.`
     }
   }, []);
 
-  const contactMutation = useMutation({
-    mutationFn: async (data: ContactFormData) => {
-      return await apiRequest('POST', '/api/inquiries', data);
-    },
-    onSuccess: () => {
-      toast({
-        title: "Message Sent!",
-        description: "Thank you for your inquiry. We'll get back to you soon.",
-      });
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        inquiryType: '',
-        message: ''
-      });
-    },
-    onError: () => {
-      toast({
-        title: "Error",
-        description: "Failed to send message. Please try again.",
-        variant: "destructive",
-      });
-    }
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.message) {
@@ -122,7 +103,50 @@ Please contact me to discuss this custom project in detail.`
       return;
     }
 
-    contactMutation.mutate(formData);
+    setIsSubmitting(true);
+
+    try {
+      // Using Formspree for form handling (free service for static sites)
+      const response = await fetch('https://formspree.io/f/xpwzgbqy', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: `${formData.firstName} ${formData.lastName}`,
+          email: formData.email,
+          phone: formData.phone || 'Not provided',
+          inquiryType: formData.inquiryType || 'General',
+          message: formData.message,
+          _replyto: formData.email
+        })
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Message Sent!",
+          description: "Thank you for your inquiry. We'll get back to you soon.",
+        });
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          inquiryType: '',
+          message: ''
+        });
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -274,7 +298,7 @@ Please contact me to discuss this custom project in detail.`
                 
                 <Button
                   type="submit"
-                  disabled={contactMutation.isPending}
+                  disabled={isSubmitting}
                   className="w-full transition-all duration-300 hover:scale-105 border-2"
                   style={{
                     background: 'linear-gradient(135deg, #fbbf24, #f59e0b)',
@@ -285,7 +309,7 @@ Please contact me to discuss this custom project in detail.`
                   }}
                   data-testid="send-message-btn"
                 >
-                  {contactMutation.isPending ? (
+                  {isSubmitting ? (
                     <>Sending...</>
                   ) : (
                     <>

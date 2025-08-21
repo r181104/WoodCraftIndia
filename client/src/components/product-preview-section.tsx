@@ -1,20 +1,13 @@
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Star, Heart, ShoppingCart } from 'lucide-react';
-import { Product } from '@shared/schema';
-import { useCart } from '@/hooks/use-cart';
+import { products, Product } from '@/data/products';
 
 export function ProductPreviewSection() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   
-  const { data: products = [] } = useQuery<Product[]>({
-    queryKey: ['/api/products'],
-  });
-
-  const { addToCart } = useCart();
   const featuredProducts = products.filter(p => p.featured).slice(0, 3);
 
   const handleProductSelect = (product: Product) => {
@@ -67,7 +60,7 @@ export function ProductPreviewSection() {
                           </span>
                           <div className="flex items-center space-x-1">
                             <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                            <span className="text-sm text-gray-600">{product.rating}</span>
+                            <span className="text-sm text-gray-600">5.0</span>
                           </div>
                         </div>
                       </div>
@@ -115,7 +108,7 @@ export function ProductPreviewSection() {
                       <div className="flex items-center space-x-4">
                         <div className="flex items-center space-x-1">
                           <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                          <span className="font-medium">{selectedProduct.rating}</span>
+                          <span className="font-medium">5.0</span>
                           <span className="text-gray-500">(24 reviews)</span>
                         </div>
                         <Badge variant="outline" className="text-green-600">
@@ -134,13 +127,33 @@ export function ProductPreviewSection() {
                         </div>
                         
                         <Button
-                          onClick={() => addToCart({ 
-                            id: selectedProduct.id, 
-                            name: selectedProduct.name, 
-                            price: Number(selectedProduct.price), 
-                            image: selectedProduct.image 
-                          })}
-                          className="w-full bg-wood-dark hover:bg-wood-dark/90 text-white"
+                          onClick={() => {
+                            // Add to cart functionality using localStorage
+                            const cartItem = {
+                              id: selectedProduct.id,
+                              name: selectedProduct.name,
+                              price: selectedProduct.price,
+                              image: selectedProduct.image,
+                              quantity: 1
+                            };
+                            
+                            const existingCart = JSON.parse(localStorage.getItem('cart') || '[]');
+                            const existingItemIndex = existingCart.findIndex((item: any) => item.id === selectedProduct.id);
+                            
+                            if (existingItemIndex > -1) {
+                              existingCart[existingItemIndex].quantity += 1;
+                            } else {
+                              existingCart.push(cartItem);
+                            }
+                            
+                            localStorage.setItem('cart', JSON.stringify(existingCart));
+                            console.log('Added to cart:', selectedProduct.name);
+                          }}
+                          className="w-full transition-all duration-300 hover:scale-105"
+                          style={{
+                            background: 'linear-gradient(135deg, #1a1611, #2d1f17)',
+                            color: '#f5deb3'
+                          }}
                           size="lg"
                         >
                           <ShoppingCart className="w-5 h-5 mr-2" />
