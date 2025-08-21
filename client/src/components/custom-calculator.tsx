@@ -112,13 +112,16 @@ export function CustomCalculator() {
   };
 
   return (
-    <section id="custom" className="py-20 bg-white">
+    <section id="custom" className="py-20" style={{ background: 'linear-gradient(135deg, #1a1611 0%, #2d1f17 30%, #1f1711 100%)' }}>
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 animate-on-scroll">
-          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-wood-dark mb-4">
+          <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-4" style={{ 
+            color: '#f5deb3',
+            textShadow: '0 2px 4px rgba(26, 22, 17, 0.6)'
+          }}>
             Custom Order Calculator
           </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <p className="text-lg max-w-2xl mx-auto" style={{ color: '#deb887' }}>
             Get an instant estimate for your custom woodwork project
           </p>
         </div>

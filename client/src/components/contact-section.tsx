@@ -126,13 +126,16 @@ Please contact me to discuss this custom project in detail.`
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-walnut to-teak text-white">
+    <section id="contact" className="py-20" style={{ background: 'linear-gradient(135deg, #1a1611 0%, #2d1f17 30%, #1f1711 100%)' }}>
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-4" style={{ 
+            color: '#f5deb3',
+            textShadow: '0 2px 4px rgba(26, 22, 17, 0.6)'
+          }}>
             Get In Touch
           </h2>
-          <p className="text-lg max-w-2xl mx-auto opacity-90">
+          <p className="text-lg max-w-2xl mx-auto" style={{ color: '#deb887' }}>
             Ready to start your custom woodwork project? We'd love to hear from you.
           </p>
         </div>
