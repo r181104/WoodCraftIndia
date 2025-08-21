@@ -16,8 +16,8 @@ const navItems = [
 ];
 
 export function Navigation({ onCartOpen }: NavigationProps) {
-  const { items } = useCart();
-  const itemCount = (items || []).reduce((sum, item) => sum + item.quantity, 0);
+  const { cartItems, cartCount } = useCart();
+  const itemCount = cartCount;
 
   return (
     <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-200">

@@ -14,7 +14,7 @@ export function ProductPreviewSection() {
     queryKey: ['/api/products'],
   });
 
-  const { addItem } = useCart();
+  const { addToCart } = useCart();
   const featuredProducts = products.filter(p => p.featured).slice(0, 3);
 
   const handleProductSelect = (product: Product) => {
@@ -134,7 +134,12 @@ export function ProductPreviewSection() {
                         </div>
                         
                         <Button
-                          onClick={() => addItem(selectedProduct)}
+                          onClick={() => addToCart({ 
+                            id: selectedProduct.id, 
+                            name: selectedProduct.name, 
+                            price: Number(selectedProduct.price), 
+                            image: selectedProduct.image 
+                          })}
                           className="w-full bg-wood-dark hover:bg-wood-dark/90 text-white"
                           size="lg"
                         >
