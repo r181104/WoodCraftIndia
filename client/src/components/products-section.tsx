@@ -27,39 +27,35 @@ export function ProductsSection() {
   return (
     <section id="products" className="py-20 bg-cream">
       <div className="container mx-auto px-6">
-        <AnimatedSection animation="fadeInUp">
-          <div className="text-center mb-16">
-            <h2 className="font-playfair text-3xl md:text-4xl font-bold text-wood-dark mb-4">
-              Our Collection
-            </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Discover our curated selection of premium wooden furniture and home decor
-            </p>
-          </div>
-        </AnimatedSection>
+        <div className="text-center mb-16 animate-on-scroll">
+          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-wood-dark mb-4">
+            Our Collection
+          </h2>
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            Discover our curated selection of premium wooden furniture and home decor
+          </p>
+        </div>
 
         {/* Product Categories */}
-        <AnimatedSection animation="scaleIn" delay={200}>
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {categories.map((category, index) => (
-              <Button
-                key={category.id}
-                onClick={() => setActiveFilter(category.id)}
-                variant={activeFilter === category.id ? "default" : "outline"}
-                style={{ animationDelay: `${index * 100}ms` }}
-                className={cn(
-                  "btn-primary font-semibold transition-all duration-300 transform hover:scale-105 animate-slide-up",
-                  activeFilter === category.id
-                    ? "bg-walnut text-white shadow-lg"
-                    : "bg-white text-walnut border-2 border-walnut hover:bg-walnut hover:text-white"
-                )}
-                data-testid={`filter-${category.id}`}
-              >
-                {category.label}
-              </Button>
-            ))}
-          </div>
-        </AnimatedSection>
+        <div className="flex flex-wrap justify-center gap-4 mb-12 animate-on-scroll">
+          {categories.map((category, index) => (
+            <Button
+              key={category.id}
+              onClick={() => setActiveFilter(category.id)}
+              variant={activeFilter === category.id ? "default" : "outline"}
+              style={{ transitionDelay: `${index * 0.1}s` }}
+              className={cn(
+                "font-semibold transition-all duration-300 transform hover:scale-105",
+                activeFilter === category.id
+                  ? "bg-walnut text-white shadow-lg"
+                  : "bg-white text-walnut border-2 border-walnut hover:bg-walnut hover:text-white"
+              )}
+              data-testid={`filter-${category.id}`}
+            >
+              {category.label}
+            </Button>
+          ))}
+        </div>
 
         {/* Products Grid */}
         {isLoading ? (
@@ -78,7 +74,7 @@ export function ProductsSection() {
               </div>
             ))}
           </div>
-        ) : (
+        ) : filteredProducts.length > 0 ? (
           <div 
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
             data-testid="products-grid"
@@ -92,6 +88,10 @@ export function ProductsSection() {
                 <ProductCard product={product} />
               </div>
             ))}
+          </div>
+        ) : (
+          <div className="text-center py-20">
+            <p className="text-gray-500 text-lg">No products found in this category.</p>
           </div>
         )}
 
