@@ -112,16 +112,23 @@ export function CustomCalculator() {
   };
 
   return (
-    <section id="custom" className="py-20" style={{ background: 'linear-gradient(135deg, #1a1611 0%, #2d1f17 30%, #1f1711 100%)' }}>
+    <section id="custom" className="py-20" style={{ 
+      background: 'linear-gradient(135deg, #f5f1eb 0%, #faf7f2 30%, #f0ece1 100%)',
+      position: 'relative'
+    }}>
+      <div className="absolute inset-0" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='50' height='50' viewBox='0 0 50 50' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d97706' fill-opacity='0.04'%3E%3Cpath d='M10 10h30v1H10zM10 18h30v1H10zM10 26h30v1H10zM10 34h30v1H10zM10 42h30v1H10z'/%3E%3C/g%3E%3C/svg%3E")`,
+        backgroundSize: '50px 50px'
+      }}></div>
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 animate-on-scroll">
-          <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-4" style={{ 
-            color: '#f5deb3',
-            textShadow: '0 2px 4px rgba(26, 22, 17, 0.6)'
+          <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-4 relative z-10" style={{ 
+            color: '#2d1810',
+            textShadow: '0 2px 4px rgba(245, 158, 11, 0.3)'
           }}>
             Custom Order Calculator
           </h2>
-          <p className="text-lg max-w-2xl mx-auto" style={{ color: '#deb887' }}>
+          <p className="text-lg max-w-2xl mx-auto relative z-10" style={{ color: '#654321' }}>
             Get an instant estimate for your custom woodwork project
           </p>
         </div>
