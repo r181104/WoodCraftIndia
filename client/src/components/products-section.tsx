@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
 import { ProductCard } from './product-card';
+import { AnimatedSection } from '@/components/ui/animated-section';
 import { Product } from '@shared/schema';
 import { cn } from '@/lib/utils';
 
@@ -26,35 +27,39 @@ export function ProductsSection() {
   return (
     <section id="products" className="py-20 bg-cream">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-wood-dark mb-4 animate-slide-in-left">
-            Our Collection
-          </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto animate-slide-in-right">
-            Discover our curated selection of premium wooden furniture and home decor
-          </p>
-        </div>
+        <AnimatedSection animation="fadeInUp">
+          <div className="text-center mb-16">
+            <h2 className="font-playfair text-3xl md:text-4xl font-bold text-wood-dark mb-4">
+              Our Collection
+            </h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Discover our curated selection of premium wooden furniture and home decor
+            </p>
+          </div>
+        </AnimatedSection>
 
         {/* Product Categories */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12 animate-scale-in">
-          {categories.map((category, index) => (
-            <Button
-              key={category.id}
-              onClick={() => setActiveFilter(category.id)}
-              variant={activeFilter === category.id ? "default" : "outline"}
-              style={{ animationDelay: `${index * 0.1}s` }}
-              className={cn(
-                "btn-primary font-semibold transition-all duration-300 transform hover:scale-105",
-                activeFilter === category.id
-                  ? "bg-walnut text-white shadow-lg"
-                  : "bg-white text-walnut border-2 border-walnut hover:bg-walnut hover:text-white"
-              )}
-              data-testid={`filter-${category.id}`}
-            >
-              {category.label}
-            </Button>
-          ))}
-        </div>
+        <AnimatedSection animation="scaleIn" delay={200}>
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            {categories.map((category, index) => (
+              <Button
+                key={category.id}
+                onClick={() => setActiveFilter(category.id)}
+                variant={activeFilter === category.id ? "default" : "outline"}
+                style={{ animationDelay: `${index * 100}ms` }}
+                className={cn(
+                  "btn-primary font-semibold transition-all duration-300 transform hover:scale-105 animate-slide-up",
+                  activeFilter === category.id
+                    ? "bg-walnut text-white shadow-lg"
+                    : "bg-white text-walnut border-2 border-walnut hover:bg-walnut hover:text-white"
+                )}
+                data-testid={`filter-${category.id}`}
+              >
+                {category.label}
+              </Button>
+            ))}
+          </div>
+        </AnimatedSection>
 
         {/* Products Grid */}
         {isLoading ? (
@@ -74,20 +79,22 @@ export function ProductsSection() {
             ))}
           </div>
         ) : (
-          <div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
-            data-testid="products-grid"
-          >
-            {filteredProducts.map((product, index) => (
-              <div 
-                key={product.id}
-                className="animate-fade-in-up card-hover"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <ProductCard product={product} />
-              </div>
-            ))}
-          </div>
+          <AnimatedSection animation="fadeInUp" delay={400}>
+            <div 
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+              data-testid="products-grid"
+            >
+              {filteredProducts.map((product, index) => (
+                <div 
+                  key={product.id}
+                  className="animate-zoom-in card-hover"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <ProductCard product={product} />
+                </div>
+              ))}
+            </div>
+          </AnimatedSection>
         )}
 
         {/* Load More Button */}

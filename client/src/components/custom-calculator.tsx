@@ -126,12 +126,13 @@ export function CustomCalculator() {
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Calculator Form */}
-            <Card className="bg-cream shadow-lg animate-slide-in-left card-hover">
-              <CardHeader>
-                <CardTitle className="font-playfair text-2xl text-wood-dark">
-                  Project Details
-                </CardTitle>
-              </CardHeader>
+            <div className="animate-on-scroll">
+              <Card className="bg-cream shadow-lg card-hover">
+                <CardHeader>
+                  <CardTitle className="font-playfair text-2xl text-wood-dark">
+                    Project Details
+                  </CardTitle>
+                </CardHeader>
               <CardContent className="space-y-6">
                 <div>
                   <Label htmlFor="project-type" className="text-sm font-semibold text-wood-dark">
@@ -258,11 +259,13 @@ export function CustomCalculator() {
                   <Calculator className="w-4 h-4 mr-2" />
                   Calculate Estimate
                 </Button>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </div>
 
             {/* Estimate Display */}
-            <Card className="bg-gradient-to-br from-walnut to-teak text-white shadow-lg">
+            <div className="animate-on-scroll" style={{ animationDelay: '0.2s' }}>
+              <Card className="bg-gradient-to-br from-walnut to-teak text-white shadow-lg">
               <CardHeader>
                 <CardTitle className="font-playfair text-2xl">Project Estimate</CardTitle>
               </CardHeader>
@@ -318,8 +321,9 @@ export function CustomCalculator() {
                     <p className="opacity-75">Fill out the form to calculate your project estimate</p>
                   </div>
                 )}
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </div>

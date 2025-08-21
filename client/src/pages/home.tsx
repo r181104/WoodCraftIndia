@@ -6,11 +6,16 @@ import { CustomCalculator } from '@/components/custom-calculator';
 import { ContactSection } from '@/components/contact-section';
 import { ShoppingCart } from '@/components/shopping-cart';
 import { FloatingNavigation } from '@/components/floating-navigation';
+import { initScrollAnimations, addPageLoadAnimations } from '@/lib/scroll-animations';
 
 export default function Home() {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
+    // Initialize animations
+    addPageLoadAnimations();
+    const cleanupScrollAnimations = initScrollAnimations();
+    
     // Close cart on escape key
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -19,7 +24,10 @@ export default function Home() {
     };
 
     document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      cleanupScrollAnimations();
+    };
   }, []);
 
   useEffect(() => {
@@ -36,7 +44,7 @@ export default function Home() {
   }, [isCartOpen]);
 
   return (
-    <div className="min-h-screen bg-cream overflow-x-hidden">
+    <div className="min-h-screen bg-cream overflow-x-hidden page-enter">
       <Navigation onCartOpen={() => setIsCartOpen(true)} />
       
       <main>
