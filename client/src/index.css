@@ -12,10 +12,10 @@
   --popover-foreground: hsl(24, 24%, 18%);
   --primary: hsl(20, 55%, 36%);
   --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(39, 38%, 68%);
-  --secondary-foreground: hsl(24, 24%, 18%);
+  --secondary: hsl(39, 38%, 58%);
+  --secondary-foreground: hsl(0, 0%, 100%);
   --muted: hsl(39, 20%, 90%);
-  --muted-foreground: hsl(24, 24%, 18%);
+  --muted-foreground: hsl(24, 24%, 28%);
   --accent: hsl(212, 51%, 93%);
   --accent-foreground: hsl(20, 55%, 36%);
   --destructive: hsl(0, 84%, 60%);
@@ -123,6 +123,160 @@
 /* Wood grain pattern */
 .wood-grain {
   background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D2691E' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Floating Action Buttons */
+.floating-btn {
+  position: fixed;
+  z-index: 50;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, hsl(20, 55%, 36%), hsl(27, 75%, 47%));
+  color: white;
+  border: none;
+  box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.floating-btn:hover {
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 12px 35px rgba(139, 69, 19, 0.4);
+  background: linear-gradient(135deg, hsl(27, 75%, 47%), hsl(42, 100%, 65%));
+}
+
+.floating-btn.animate-float {
+  animation: floating 3s ease-in-out infinite;
+}
+
+.floating-btn:nth-child(2) {
+  animation-delay: 1.5s;
+}
+
+@keyframes floating {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-10px) rotate(2deg); }
+  50% { transform: translateY(-15px) rotate(0deg); }
+  75% { transform: translateY(-10px) rotate(-2deg); }
+}
+
+/* Enhanced animations */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.8s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.8s ease-out;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s ease-out;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+/* Smooth hover transitions for all interactive elements */
+button, a, .interactive {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(139, 69, 19, 0.15);
+}
+
+/* Button improvements */
+.btn-primary {
+  background: linear-gradient(135deg, hsl(20, 55%, 36%), hsl(27, 75%, 47%));
+  color: white;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 4px 15px rgba(139, 69, 19, 0.25);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, hsl(27, 75%, 47%), hsl(42, 100%, 65%));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(139, 69, 19, 0.35);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, hsl(39, 38%, 58%), hsl(42, 100%, 65%));
+  color: white;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 4px 15px rgba(218, 165, 32, 0.25);
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, hsl(42, 100%, 65%), hsl(45, 100%, 70%));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(218, 165, 32, 0.35);
 }
 
 /* Glass effect */

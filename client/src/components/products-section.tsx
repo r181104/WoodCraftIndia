@@ -26,27 +26,28 @@ export function ProductsSection() {
   return (
     <section id="products" className="py-20 bg-cream">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-wood-dark mb-4">
+        <div className="text-center mb-16 animate-fade-in-up">
+          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-wood-dark mb-4 animate-slide-in-left">
             Our Collection
           </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto animate-slide-in-right">
             Discover our curated selection of premium wooden furniture and home decor
           </p>
         </div>
 
         {/* Product Categories */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
+        <div className="flex flex-wrap justify-center gap-4 mb-12 animate-scale-in">
+          {categories.map((category, index) => (
             <Button
               key={category.id}
               onClick={() => setActiveFilter(category.id)}
               variant={activeFilter === category.id ? "default" : "outline"}
+              style={{ animationDelay: `${index * 0.1}s` }}
               className={cn(
-                "font-semibold transition-all duration-200",
+                "btn-primary font-semibold transition-all duration-300 transform hover:scale-105",
                 activeFilter === category.id
-                  ? "bg-walnut text-white hover:bg-walnut-light"
-                  : "bg-white text-walnut border-walnut hover:bg-walnut hover:text-white"
+                  ? "bg-walnut text-white shadow-lg"
+                  : "bg-white text-walnut border-2 border-walnut hover:bg-walnut hover:text-white"
               )}
               data-testid={`filter-${category.id}`}
             >
@@ -77,8 +78,14 @@ export function ProductsSection() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
             data-testid="products-grid"
           >
-            {filteredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+            {filteredProducts.map((product, index) => (
+              <div 
+                key={product.id}
+                className="animate-fade-in-up card-hover"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <ProductCard product={product} />
+              </div>
             ))}
           </div>
         )}

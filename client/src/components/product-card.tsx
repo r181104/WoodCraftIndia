@@ -24,7 +24,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <Card 
-      className="product-card bg-white rounded-2xl shadow-lg overflow-hidden group cursor-pointer" 
+      className="product-card bg-white rounded-2xl shadow-lg overflow-hidden group cursor-pointer hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2" 
       data-animate="true"
       data-testid={`product-card-${product.id}`}
     >

@@ -41,15 +41,15 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Floating Elements */}
+      {/* Decorative Floating Elements */}
       <div className="absolute bottom-10 left-10 hidden lg:block animate-float">
-        <div className="glass-effect rounded-full p-4 text-amber">
-          <div className="w-8 h-8 flex items-center justify-center">🔨</div>
+        <div className="w-16 h-16 bg-gradient-to-r from-amber-400 to-amber-600 rounded-full flex items-center justify-center text-2xl animate-pulse-slow">
+          🔨
         </div>
       </div>
-      <div className="absolute top-20 right-10 hidden lg:block animate-float" style={{ animationDelay: '1s' }}>
-        <div className="glass-effect rounded-full p-4 text-amber">
-          <div className="w-8 h-8 flex items-center justify-center">🍃</div>
+      <div className="absolute top-20 right-10 hidden lg:block animate-float" style={{ animationDelay: '1.5s' }}>
+        <div className="w-14 h-14 bg-gradient-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center text-xl animate-pulse-slow">
+          🌿
         </div>
       </div>
 
