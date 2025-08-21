@@ -142,9 +142,16 @@ Please contact me to discuss this custom project in detail.`
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <Card className="bg-white/10 backdrop-blur-md border-white/20">
+          <Card className="transition-all duration-500 border border-amber-400/30" style={{
+            background: 'rgba(45, 31, 23, 0.95)',
+            boxShadow: '0 8px 32px rgba(26, 22, 17, 0.6), inset 0 1px 2px rgba(251, 191, 36, 0.1)',
+            backdropFilter: 'blur(20px)'
+          }}>
             <CardHeader>
-              <CardTitle className="font-playfair text-2xl text-white">
+              <CardTitle className="font-playfair text-2xl" style={{ 
+                color: '#f5deb3',
+                textShadow: '0 2px 4px rgba(26, 22, 17, 0.6)'
+              }}>
                 Send us a Message
               </CardTitle>
             </CardHeader>
@@ -152,25 +159,35 @@ Please contact me to discuss this custom project in detail.`
               <form onSubmit={handleSubmit} className="space-y-6" data-testid="contact-form">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="firstName" className="text-white">First Name *</Label>
+                    <Label htmlFor="firstName" style={{ color: '#deb887' }}>First Name *</Label>
                     <Input
                       id="firstName"
                       required
                       value={formData.firstName}
                       onChange={(e) => setFormData(prev => ({ ...prev, firstName: e.target.value }))}
-                      className="bg-white/20 border-white/30 text-white placeholder:text-white/70"
+                      className="border-2 transition-all duration-300"
+                      style={{
+                        backgroundColor: 'rgba(26, 22, 17, 0.8)',
+                        borderColor: 'rgba(251, 191, 36, 0.3)',
+                        color: '#f5deb3'
+                      }}
                       placeholder="First Name"
                       data-testid="first-name-input"
                     />
                   </div>
                   <div>
-                    <Label htmlFor="lastName" className="text-white">Last Name *</Label>
+                    <Label htmlFor="lastName" style={{ color: '#deb887' }}>Last Name *</Label>
                     <Input
                       id="lastName"
                       required
                       value={formData.lastName}
                       onChange={(e) => setFormData(prev => ({ ...prev, lastName: e.target.value }))}
-                      className="bg-white/20 border-white/30 text-white placeholder:text-white/70"
+                      className="border-2 transition-all duration-300"
+                      style={{
+                        backgroundColor: 'rgba(26, 22, 17, 0.8)',
+                        borderColor: 'rgba(251, 191, 36, 0.3)',
+                        color: '#f5deb3'
+                      }}
                       placeholder="Last Name"
                       data-testid="last-name-input"
                     />
@@ -178,39 +195,53 @@ Please contact me to discuss this custom project in detail.`
                 </div>
                 
                 <div>
-                  <Label htmlFor="email" className="text-white">Email Address *</Label>
+                  <Label htmlFor="email" style={{ color: '#deb887' }}>Email Address *</Label>
                   <Input
                     id="email"
                     type="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                    className="bg-white/20 border-white/30 text-white placeholder:text-white/70"
+                    className="border-2 transition-all duration-300"
+                    style={{
+                      backgroundColor: 'rgba(26, 22, 17, 0.8)',
+                      borderColor: 'rgba(251, 191, 36, 0.3)',
+                      color: '#f5deb3'
+                    }}
                     placeholder="Email Address"
                     data-testid="email-input"
                   />
                 </div>
                 
                 <div>
-                  <Label htmlFor="phone" className="text-white">Phone Number</Label>
+                  <Label htmlFor="phone" style={{ color: '#deb887' }}>Phone Number</Label>
                   <Input
                     id="phone"
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                    className="bg-white/20 border-white/30 text-white placeholder:text-white/70"
+                    className="border-2 transition-all duration-300"
+                    style={{
+                      backgroundColor: 'rgba(26, 22, 17, 0.8)',
+                      borderColor: 'rgba(251, 191, 36, 0.3)',
+                      color: '#f5deb3'
+                    }}
                     placeholder="Phone Number"
                     data-testid="phone-input"
                   />
                 </div>
                 
                 <div>
-                  <Label htmlFor="inquiryType" className="text-white">Inquiry Type</Label>
+                  <Label htmlFor="inquiryType" style={{ color: '#deb887' }}>Inquiry Type</Label>
                   <Select
                     value={formData.inquiryType}
                     onValueChange={(value) => setFormData(prev => ({ ...prev, inquiryType: value }))}
                   >
-                    <SelectTrigger className="bg-white/20 border-white/30 text-white" data-testid="inquiry-type-select">
+                    <SelectTrigger className="border-2 transition-all duration-300" style={{
+                      backgroundColor: 'rgba(26, 22, 17, 0.8)',
+                      borderColor: 'rgba(251, 191, 36, 0.3)',
+                      color: '#f5deb3'
+                    }} data-testid="inquiry-type-select">
                       <SelectValue placeholder="Select Inquiry Type" />
                     </SelectTrigger>
                     <SelectContent>
@@ -223,14 +254,19 @@ Please contact me to discuss this custom project in detail.`
                 </div>
                 
                 <div>
-                  <Label htmlFor="message" className="text-white">Message *</Label>
+                  <Label htmlFor="message" style={{ color: '#deb887' }}>Message *</Label>
                   <Textarea
                     id="message"
                     rows={4}
                     required
                     value={formData.message}
                     onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-                    className="bg-white/20 border-white/30 text-white placeholder:text-white/70"
+                    className="border-2 transition-all duration-300"
+                    style={{
+                      backgroundColor: 'rgba(26, 22, 17, 0.8)',
+                      borderColor: 'rgba(251, 191, 36, 0.3)',
+                      color: '#f5deb3'
+                    }}
                     placeholder="Tell us about your project or inquiry..."
                     data-testid="message-textarea"
                   />
@@ -239,14 +275,21 @@ Please contact me to discuss this custom project in detail.`
                 <Button
                   type="submit"
                   disabled={contactMutation.isPending}
-                  className="w-full bg-amber text-wood-dark hover:bg-amber-light"
+                  className="w-full transition-all duration-300 hover:scale-105 border-2"
+                  style={{
+                    background: 'linear-gradient(135deg, #fbbf24, #f59e0b)',
+                    borderColor: 'rgba(251, 191, 36, 0.5)',
+                    color: '#1a1611',
+                    fontWeight: 'bold',
+                    boxShadow: '0 4px 12px rgba(251, 191, 36, 0.4)'
+                  }}
                   data-testid="send-message-btn"
                 >
                   {contactMutation.isPending ? (
                     <>Sending...</>
                   ) : (
                     <>
-                      <Send className="w-4 h-4 mr-2" />
+                      <Send className="w-4 h-4 mr-2" style={{ filter: 'drop-shadow(0 1px 2px rgba(26, 22, 17, 0.3))' }} />
                       Send Message
                     </>
                   )}
@@ -257,7 +300,10 @@ Please contact me to discuss this custom project in detail.`
 
           {/* Contact Information */}
           <div>
-            <h3 className="font-playfair text-2xl font-semibold mb-6">
+            <h3 className="font-playfair text-2xl font-semibold mb-6" style={{ 
+              color: '#f5deb3',
+              textShadow: '0 2px 4px rgba(26, 22, 17, 0.6)'
+            }}>
               Visit Our Workshop
             </h3>
             
@@ -266,13 +312,16 @@ Please contact me to discuss this custom project in detail.`
                 const Icon = info.icon;
                 return (
                   <div key={index} className="flex items-start gap-4" data-testid={`contact-info-${index}`}>
-                    <div className="bg-amber/20 p-3 rounded-lg">
-                      <Icon className="w-6 h-6 text-amber" />
+                    <div className="p-3 rounded-lg" style={{
+                      background: 'linear-gradient(135deg, #fbbf24, #f59e0b)',
+                      boxShadow: '0 4px 12px rgba(251, 191, 36, 0.4)'
+                    }}>
+                      <Icon className="w-6 h-6 text-white" style={{ filter: 'drop-shadow(0 1px 2px rgba(26, 22, 17, 0.3))' }} />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-lg mb-2">{info.title}</h4>
+                      <h4 className="font-semibold text-lg mb-2" style={{ color: '#f5deb3' }}>{info.title}</h4>
                       {info.content.map((line, lineIndex) => (
-                        <p key={lineIndex} className="opacity-90">
+                        <p key={lineIndex} style={{ color: '#deb887' }}>
                           {line}
                         </p>
                       ))}
@@ -290,11 +339,20 @@ Please contact me to discuss this custom project in detail.`
                   <a
                     key={index}
                     href={social.href}
-                    className="bg-white/20 backdrop-blur-md p-3 rounded-lg hover:bg-white/30 transition-colors duration-200"
+                    className="p-3 rounded-lg transition-all duration-300 hover:scale-110"
+                    style={{
+                      background: 'rgba(45, 31, 23, 0.8)',
+                      backdropFilter: 'blur(10px)',
+                      border: '1px solid rgba(251, 191, 36, 0.3)',
+                      boxShadow: '0 4px 12px rgba(26, 22, 17, 0.4)'
+                    }}
                     aria-label={social.label}
                     data-testid={`social-link-${index}`}
                   >
-                    <Icon className="w-6 h-6" />
+                    <Icon className="w-6 h-6" style={{ 
+                      color: '#fcd34d',
+                      filter: 'drop-shadow(0 1px 2px rgba(251, 191, 36, 0.3))'
+                    }} />
                   </a>
                 );
               })}
