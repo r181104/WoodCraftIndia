@@ -70,14 +70,44 @@ export function CustomCalculator() {
     setEstimate(newEstimate);
   };
 
-  const handleRequestQuote = () => {
+  const handleRequestQuote = async () => {
     if (estimate) {
-      localStorage.setItem('quote-request', JSON.stringify(estimate));
-      scrollToSection('contact');
-      toast({
-        title: "Quote Request Saved",
-        description: "Please fill out the contact form to complete your quote request.",
-      });
+      try {
+        // Save quote to backend
+        const response = await fetch('/api/custom-quotes', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            projectType: estimate.projectType,
+            woodType: estimate.woodType,
+            length: estimate.length.toString(),
+            width: estimate.width.toString(),
+            finishType: estimate.finishType,
+            description: estimate.description || '',
+            materialCost: estimate.materialCost.toString(),
+            laborCost: estimate.laborCost.toString(),
+            finishCost: estimate.finishCost.toString(),
+            totalEstimate: estimate.totalEstimate.toString(),
+          })
+        });
+
+        if (response.ok) {
+          localStorage.setItem('quote-request', JSON.stringify(estimate));
+          scrollToSection('contact');
+          toast({
+            title: "Quote Request Saved",
+            description: "Please fill out the contact form to complete your quote request.",
+          });
+        } else {
+          throw new Error('Failed to save quote');
+        }
+      } catch (error) {
+        toast({
+          title: "Error",
+          description: "Failed to save quote. Please try the contact form instead.",
+          variant: "destructive",
+        });
+      }
     }
   };
 

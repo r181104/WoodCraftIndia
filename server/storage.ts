@@ -152,6 +152,7 @@ export class MemStorage implements IStorage {
     const id = randomUUID();
     const inquiry: Inquiry = {
       ...insertInquiry,
+      phone: insertInquiry.phone || null,
       id,
       createdAt: new Date(),
     };
@@ -163,6 +164,8 @@ export class MemStorage implements IStorage {
     const id = randomUUID();
     const quote: CustomQuote = {
       ...insertQuote,
+      description: insertQuote.description || null,
+      customerEmail: insertQuote.customerEmail || null,
       id,
       createdAt: new Date(),
     };

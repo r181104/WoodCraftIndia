@@ -16,7 +16,7 @@ export function ProductsSection() {
   const [activeFilter, setActiveFilter] = useState('all');
   
   const { data: products = [], isLoading } = useQuery<Product[]>({
-    queryKey: ['/api/products', activeFilter === 'all' ? '' : `?category=${activeFilter}`],
+    queryKey: ['/api/products'],
   });
 
   const filteredProducts = activeFilter === 'all' 

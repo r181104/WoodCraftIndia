@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -52,6 +52,36 @@ export function ContactSection() {
   });
   
   const { toast } = useToast();
+
+  // Auto-fill quote request info if available
+  useEffect(() => {
+    const savedQuote = localStorage.getItem('quote-request');
+    if (savedQuote) {
+      try {
+        const quote = JSON.parse(savedQuote);
+        setFormData(prev => ({
+          ...prev,
+          inquiryType: 'quote-request',
+          message: `Custom Project Quote Request:
+
+Project Type: ${quote.projectType}
+Wood Type: ${quote.woodType}  
+Dimensions: ${quote.length} x ${quote.width} feet
+Finish: ${quote.finishType}
+Total Estimate: ₹${quote.totalEstimate?.toLocaleString('en-IN')}
+
+${quote.description ? `Description: ${quote.description}` : ''}
+
+Please contact me to discuss this custom project in detail.`
+        }));
+        
+        // Clear the saved quote after using it
+        localStorage.removeItem('quote-request');
+      } catch (error) {
+        console.log('Failed to parse saved quote');
+      }
+    }
+  }, []);
 
   const contactMutation = useMutation({
     mutationFn: async (data: ContactFormData) => {
