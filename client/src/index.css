@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(44, 33%, 96%);
+  --foreground: hsl(24, 24%, 18%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(24, 24%, 18%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(24, 24%, 18%);
+  --primary: hsl(20, 55%, 36%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(39, 38%, 68%);
+  --secondary-foreground: hsl(24, 24%, 18%);
+  --muted: hsl(39, 20%, 90%);
+  --muted-foreground: hsl(24, 24%, 18%);
+  --accent: hsl(212, 51%, 93%);
+  --accent-foreground: hsl(20, 55%, 36%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(39, 30%, 91%);
+  --input: hsl(39, 23%, 97%);
+  --ring: hsl(20, 89%, 53%);
+  --chart-1: hsl(20, 55%, 36%);
+  --chart-2: hsl(159, 100%, 36%);
+  --chart-3: hsl(42, 93%, 56%);
+  --chart-4: hsl(147, 79%, 42%);
+  --chart-5: hsl(341, 75%, 51%);
+  --sidebar: hsl(0, 0%, 100%);
+  --sidebar-foreground: hsl(24, 24%, 18%);
+  --sidebar-primary: hsl(20, 55%, 36%);
+  --sidebar-primary-foreground: hsl(0, 0%, 100%);
+  --sidebar-accent: hsl(212, 51%, 93%);
+  --sidebar-accent-foreground: hsl(20, 55%, 36%);
+  --sidebar-border: hsl(39, 25%, 91%);
+  --sidebar-ring: hsl(20, 89%, 53%);
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-mono: 'Menlo', monospace;
+  --radius: 1.3rem;
+  
+  /* Wood-themed colors */
+  --walnut: hsl(20, 55%, 36%);
+  --walnut-light: hsl(20, 55%, 42%);
+  --teak: hsl(27, 75%, 47%);
+  --teak-light: hsl(33, 65%, 60%);
+  --amber: hsl(42, 100%, 65%);
+  --amber-light: hsl(42, 74%, 70%);
+  --cream: hsl(44, 33%, 96%);
+  --wood-dark: hsl(24, 24%, 18%);
+  
+  /* Animation shadows */
+  --shadow-2xs: 0px 2px 0px 0px hsl(20, 89%, 53% / 0.00);
+  --shadow-xs: 0px 2px 0px 0px hsl(20, 89%, 53% / 0.00);
+  --shadow-sm: 0px 2px 0px 0px hsl(20, 89%, 53% / 0.00), 0px 1px 2px -1px hsl(20, 89%, 53% / 0.00);
+  --shadow: 0px 2px 0px 0px hsl(20, 89%, 53% / 0.00), 0px 1px 2px -1px hsl(20, 89%, 53% / 0.00);
+  --shadow-md: 0px 2px 0px 0px hsl(20, 89%, 53% / 0.00), 0px 2px 4px -1px hsl(20, 89%, 53% / 0.00);
+  --shadow-lg: 0px 2px 0px 0px hsl(20, 89%, 53% / 0.00), 0px 4px 6px -1px hsl(20, 89%, 53% / 0.00);
+  --shadow-xl: 0px 2px 0px 0px hsl(20, 89%, 53% / 0.00), 0px 8px 10px -1px hsl(20, 89%, 53% / 0.00);
+  --shadow-2xl: 0px 2px 0px 0px hsl(20, 89%, 53% / 0.00);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+}
+
+.dark {
+  --background: hsl(0, 0%, 0%);
+  --foreground: hsl(200, 7%, 91%);
+  --card: hsl(228, 10%, 10%);
+  --card-foreground: hsl(0, 0%, 85%);
+  --popover: hsl(0, 0%, 0%);
+  --popover-foreground: hsl(200, 7%, 91%);
+  --primary: hsl(20, 88%, 53%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(195, 15%, 95%);
+  --secondary-foreground: hsl(24, 24%, 18%);
+  --muted: hsl(0, 0%, 9%);
+  --muted-foreground: hsl(210, 3%, 46%);
+  --accent: hsl(206, 70%, 8%);
+  --accent-foreground: hsl(20, 88%, 53%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(210, 5%, 15%);
+  --input: hsl(208, 28%, 18%);
+  --ring: hsl(20, 89%, 53%);
+  --chart-1: hsl(20, 55%, 36%);
+  --chart-2: hsl(159, 100%, 36%);
+  --chart-3: hsl(42, 93%, 56%);
+  --chart-4: hsl(147, 79%, 42%);
+  --chart-5: hsl(341, 75%, 51%);
+  --sidebar: hsl(228, 10%, 10%);
+  --sidebar-foreground: hsl(0, 0%, 85%);
+  --sidebar-primary: hsl(20, 89%, 53%);
+  --sidebar-primary-foreground: hsl(0, 0%, 100%);
+  --sidebar-accent: hsl(206, 70%, 8%);
+  --sidebar-accent-foreground: hsl(20, 88%, 53%);
+  --sidebar-border: hsl(206, 16%, 26%);
+  --sidebar-ring: hsl(20, 89%, 53%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+
+  .font-playfair {
+    font-family: var(--font-playfair);
+  }
+}
+
+/* Hero background */
+.hero-bg {
+  background: linear-gradient(135deg, rgba(43, 30, 17, 0.7), rgba(139, 69, 19, 0.6)), 
+              url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080') center/cover;
+}
+
+/* Wood grain pattern */
+.wood-grain {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D2691E' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Glass effect */
+.glass-effect {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Product card hover effect */
+.product-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(139, 69, 19, 0.2);
+}
+
+/* Navigation link effect */
+.nav-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--amber);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Cart slide animation */
+.cart-slide {
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.cart-slide.open {
+  transform: translateX(0);
+}
+
+/* Loading spinner */
+.loading-spinner {
+  border: 3px solid rgba(139, 69, 19, 0.3);
+  border-radius: 50%;
+  border-top: 3px solid var(--walnut);
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Scroll progress indicator */
+.scroll-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--walnut), var(--amber));
+  z-index: 9999;
+  transition: width 0.1s ease;
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes slideUp {
+  0% { transform: translateY(30px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.4s ease-out;
+}
+
+/* Line clamp utility */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
