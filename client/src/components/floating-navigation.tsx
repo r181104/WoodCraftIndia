@@ -87,7 +87,13 @@ export function FloatingNavigation({ onCartOpen }: FloatingNavigationProps) {
                 className="relative w-16 h-16 rounded-full bg-gradient-to-r from-wood-dark via-amber-700 to-amber-800 hover:from-amber-800 hover:via-wood-dark hover:to-amber-900 text-white shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 group border-2 border-amber-300/20"
                 data-testid="floating-cart-btn"
               >
-                <ShoppingCart className="w-7 h-7 group-hover:scale-110 transition-transform duration-300" />
+                <ShoppingCart 
+                  className="w-7 h-7 group-hover:scale-125 group-hover:rotate-6 transition-all duration-500 relative z-10" 
+                  style={{ 
+                    filter: 'drop-shadow(0 2px 6px rgba(251, 191, 36, 0.4))',
+                    strokeWidth: '2.5px'
+                  }}
+                />
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400/20 to-amber-600/20 group-hover:from-amber-400/40 group-hover:to-amber-600/40 transition-all duration-300"></div>
               </Button>
             </TooltipTrigger>
@@ -122,13 +128,25 @@ export function FloatingNavigation({ onCartOpen }: FloatingNavigationProps) {
                   className={`w-16 h-16 rounded-full ${item.color} text-white shadow-2xl hover:shadow-3xl ${item.shadow} transition-all duration-500 hover:scale-110 group border-2 border-amber-300/30 backdrop-blur-sm relative overflow-hidden`}
                   data-testid={`floating-nav-${item.section}`}
                 >
-                  <item.icon className="w-7 h-7 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 relative z-10" />
+                  <item.icon 
+                    className="w-7 h-7 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 relative z-10" 
+                    style={{ 
+                      filter: 'drop-shadow(0 2px 6px rgba(251, 191, 36, 0.4))',
+                      strokeWidth: '2.5px'
+                    }}
+                  />
                   
-                  {/* Premium Shine Effect */}
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-300/40 via-transparent to-amber-600/20 group-hover:from-amber-200/60 group-hover:to-amber-500/40 transition-all duration-500"></div>
+                  {/* Enhanced Icon Glow Effect */}
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-300/50 via-transparent to-amber-600/30 group-hover:from-amber-200/70 group-hover:to-amber-500/50 transition-all duration-500"></div>
                   
-                  {/* Floating Glow */}
-                  <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-amber-500/0 via-amber-400/20 to-amber-500/0 group-hover:from-amber-400/30 group-hover:via-amber-300/40 group-hover:to-amber-400/30 transition-all duration-500 blur-lg"></div>
+                  {/* Premium Floating Glow */}
+                  <div className="absolute -inset-3 rounded-full bg-gradient-to-r from-amber-500/0 via-amber-400/25 to-amber-500/0 group-hover:from-amber-400/40 group-hover:via-amber-300/50 group-hover:to-amber-400/40 transition-all duration-500 blur-xl"></div>
+                  
+                  {/* Wood Grain Texture Overlay */}
+                  <div className="absolute inset-0 rounded-full opacity-20 group-hover:opacity-30 transition-opacity duration-500" style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fbbf24' fill-opacity='0.15'%3E%3Cpath d='M8 8h24v2H8zM8 16h24v2H8zM8 24h24v2H8zM8 32h24v2H8z'/%3E%3C/g%3E%3C/svg%3E")`,
+                    backgroundSize: '20px 20px'
+                  }}></div>
                 </Button>
               </TooltipTrigger>
               <TooltipContent side="left" className="bg-gradient-to-r from-wood-dark to-amber-900 text-amber-100 border border-amber-500/30 shadow-2xl backdrop-blur-sm rounded-lg px-4 py-2">
@@ -157,8 +175,17 @@ export function FloatingNavigation({ onCartOpen }: FloatingNavigationProps) {
                 className="w-16 h-16 rounded-full bg-gradient-to-r from-wood-dark via-amber-900 to-wood-dark hover:from-amber-800 hover:via-wood-dark hover:to-amber-800 text-amber-100 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-110 group border-2 border-amber-400/40 relative overflow-hidden animate-pulse hover:animate-none"
                 data-testid="back-to-top-btn"
               >
-                <svg className="w-7 h-7 group-hover:scale-125 group-hover:-translate-y-1 transition-all duration-500 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                <svg 
+                  className="w-7 h-7 group-hover:scale-125 group-hover:-translate-y-1 transition-all duration-500 relative z-10" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                  style={{ 
+                    filter: 'drop-shadow(0 2px 6px rgba(251, 191, 36, 0.4))',
+                    strokeWidth: '3px'
+                  }}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
                 </svg>
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-300/30 via-transparent to-amber-600/20 group-hover:from-amber-200/50 group-hover:to-amber-500/30 transition-all duration-500"></div>
                 <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-amber-500/0 via-amber-400/15 to-amber-500/0 group-hover:from-amber-400/25 group-hover:via-amber-300/35 group-hover:to-amber-400/25 transition-all duration-500 blur-lg"></div>

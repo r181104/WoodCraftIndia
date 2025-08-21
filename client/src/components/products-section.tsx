@@ -25,14 +25,14 @@ export function ProductsSection() {
     : products.filter(product => product.category === activeFilter);
 
   return (
-    <section id="products" className="py-20 bg-cream">
+    <section id="products" className="py-20" style={{ background: 'linear-gradient(135deg, #1a1611 0%, #2d1f17 30%, #1f1711 100%)' }}>
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 animate-on-scroll">
-          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-wood-dark mb-4">
-            Our Collection
+          <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-4" style={{ color: '#f5deb3' }}>
+            Our Exquisite Collection
           </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Discover our curated selection of premium wooden furniture and home decor
+          <p className="text-lg max-w-2xl mx-auto" style={{ color: '#deb887' }}>
+            Discover our curated selection of premium handcrafted wooden furniture and home decor
           </p>
         </div>
 
@@ -43,13 +43,21 @@ export function ProductsSection() {
               key={category.id}
               onClick={() => setActiveFilter(category.id)}
               variant={activeFilter === category.id ? "default" : "outline"}
-              style={{ transitionDelay: `${index * 0.1}s` }}
               className={cn(
-                "font-semibold transition-all duration-300 transform hover:scale-105",
+                "font-semibold transition-all duration-500 transform hover:scale-105 border-2 relative overflow-hidden backdrop-blur-sm",
                 activeFilter === category.id
-                  ? "bg-walnut text-white shadow-lg"
-                  : "bg-white text-walnut border-2 border-walnut hover:bg-walnut hover:text-white"
+                  ? "text-white shadow-2xl border-amber-400/50"
+                  : "text-amber-100 border-amber-400/30 hover:text-white hover:border-amber-300/60"
               )}
+              style={{
+                transitionDelay: `${index * 0.1}s`,
+                background: activeFilter === category.id 
+                  ? 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%)'
+                  : 'linear-gradient(135deg, rgba(45, 31, 23, 0.8) 0%, rgba(26, 22, 17, 0.9) 100%)',
+                boxShadow: activeFilter === category.id 
+                  ? '0 8px 25px rgba(251, 191, 36, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.2)'
+                  : '0 4px 15px rgba(26, 22, 17, 0.6), inset 0 1px 1px rgba(251, 191, 36, 0.1)'
+              }}
               data-testid={`filter-${category.id}`}
             >
               {category.label}
@@ -62,8 +70,12 @@ export function ProductsSection() {
           {filteredProducts.map((product, index) => (
             <div 
               key={product.id}
-              className="bg-white rounded-2xl shadow-lg overflow-hidden group cursor-pointer hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
-              style={{ transitionDelay: `${index * 0.1}s` }}
+              className="rounded-2xl shadow-2xl overflow-hidden group cursor-pointer hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 relative border border-amber-400/20 backdrop-blur-sm"
+              style={{ 
+                background: 'rgba(45, 31, 23, 0.95)',
+                transitionDelay: `${index * 0.1}s`,
+                boxShadow: '0 8px 32px rgba(26, 22, 17, 0.6), inset 0 1px 2px rgba(251, 191, 36, 0.1)'
+              }}
             >
               <div className="relative overflow-hidden">
                 <img 
@@ -73,16 +85,28 @@ export function ProductsSection() {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute top-4 right-4 bg-gradient-to-r from-amber-400 to-amber-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
-                  {product.category.charAt(0).toUpperCase() + product.category.slice(1)}
+                <div className="absolute top-4 right-4 bg-gradient-to-r from-amber-400 to-amber-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-2xl border border-amber-300/50 backdrop-blur-sm group-hover:scale-110 transition-all duration-300">
+                  <span className="flex items-center gap-1">
+                    {product.category === 'furniture' && (
+                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                      </svg>
+                    )}
+                    {product.category === 'decor' && (
+                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd"/>
+                      </svg>
+                    )}
+                    {product.category.charAt(0).toUpperCase() + product.category.slice(1)}
+                  </span>
                 </div>
               </div>
               
               <div className="p-6">
-                <h3 className="font-playfair text-xl font-bold text-wood-dark mb-2 group-hover:text-amber-700 transition-colors">
+                <h3 className="font-playfair text-xl font-bold mb-2 group-hover:text-amber-300 transition-colors duration-300" style={{ color: '#f5deb3' }}>
                   {product.name}
                 </h3>
-                <p className="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-3">
+                <p className="text-sm mb-4 leading-relaxed line-clamp-3" style={{ color: '#deb887' }}>
                   {product.description}
                 </p>
                 

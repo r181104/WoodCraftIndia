@@ -52,7 +52,7 @@ export default function Home() {
   }, [isCartOpen]);
 
   return (
-    <div className="min-h-screen bg-cream overflow-x-hidden page-enter">
+    <div className="min-h-screen overflow-x-hidden page-enter" style={{ background: 'linear-gradient(135deg, #1a1611 0%, #2d1f17 30%, #1f1711 100%)' }}>
       <Navigation onCartOpen={() => setIsCartOpen(true)} />
       
       <main>
