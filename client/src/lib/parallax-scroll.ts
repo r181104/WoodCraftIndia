@@ -3,36 +3,18 @@ export function initParallaxScroll() {
 
   function updateParallax() {
     const scrolled = window.pageYOffset;
-    const parallaxElements = document.querySelectorAll('.parallax-element');
-    
-    parallaxElements.forEach((element, index) => {
-      if (element instanceof HTMLElement) {
-        const rate = scrolled * -0.3;
-        const yPos = -(rate / (index + 1));
-        element.style.transform = `translateY(${yPos}px) scale(${1 + scrolled * 0.00015})`;
-        element.style.opacity = String(Math.max(0.3, 1 - scrolled * 0.001));
-      }
-    });
 
-    // Floating navigation smooth reveal
+    // Simplified floating navigation reveal
     const floatingNav = document.querySelector('.floating-nav');
     if (floatingNav instanceof HTMLElement) {
-      const showThreshold = 300;
+      const showThreshold = 200;
       if (scrolled > showThreshold) {
-        floatingNav.style.transform = `translateY(0) scale(1)`;
         floatingNav.style.opacity = '1';
+        floatingNav.style.transform = 'translateY(0)';
       } else {
-        floatingNav.style.transform = `translateY(20px) scale(0.9)`;
         floatingNav.style.opacity = '0';
+        floatingNav.style.transform = 'translateY(10px)';
       }
-    }
-
-    // Smooth background parallax
-    const heroSection = document.querySelector('.hero-bg');
-    if (heroSection instanceof HTMLElement) {
-      const bgRate = scrolled * 0.5;
-      heroSection.style.backgroundPosition = `center ${bgRate}px`;
-      heroSection.style.filter = `brightness(${Math.max(0.7, 1 - scrolled * 0.001)})`;
     }
 
     ticking = false;
@@ -54,16 +36,19 @@ export function initSmoothScrolling() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href')!);
-      if (target) {
-        const headerOffset = 80;
-        const elementPosition = target.offsetTop;
-        const offsetPosition = elementPosition - headerOffset;
+      const href = (this as HTMLAnchorElement).getAttribute('href');
+      if (href) {
+        const target = document.querySelector(href);
+        if (target) {
+          const headerOffset = 80;
+          const elementPosition = (target as HTMLElement).offsetTop;
+          const offsetPosition = elementPosition - headerOffset;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
       }
     });
   });
@@ -86,7 +71,7 @@ export function addScrollRevealEffects() {
     rootMargin: '0px 0px -50px 0px'
   });
 
-  revealElements.forEach(el => revealObserver.observe(el));
+  Array.from(revealElements).forEach(el => revealObserver.observe(el));
   
   return () => revealObserver.disconnect();
 }

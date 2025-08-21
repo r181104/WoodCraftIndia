@@ -42,25 +42,15 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Decorative Floating Elements with Parallax */}
-      <div className="absolute bottom-10 left-10 hidden lg:block animate-float-up animate-stagger-7 parallax-element">
-        <div className="w-16 h-16 bg-gradient-to-r from-amber-400 to-amber-600 rounded-full flex items-center justify-center text-2xl animate-bounce-gentle shadow-2xl magnetic-hover">
+      {/* Decorative Floating Elements */}
+      <div className="absolute bottom-10 left-10 hidden lg:block animate-float-up animate-stagger-7">
+        <div className="w-16 h-16 bg-gradient-to-r from-amber-400 to-amber-600 rounded-full flex items-center justify-center text-2xl animate-bounce-gentle shadow-lg">
           🔨
         </div>
       </div>
-      <div className="absolute top-20 right-10 hidden lg:block animate-morph-in animate-stagger-8 parallax-element">
-        <div className="w-14 h-14 bg-gradient-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center text-xl animate-pulse-slow shadow-2xl magnetic-hover">
+      <div className="absolute top-20 right-10 hidden lg:block animate-morph-in animate-stagger-8">
+        <div className="w-14 h-14 bg-gradient-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center text-xl animate-pulse-slow shadow-lg">
           🌿
-        </div>
-      </div>
-      <div className="absolute top-1/2 left-20 hidden xl:block animate-float-up animate-stagger-6 parallax-element">
-        <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-lg animate-bounce-gentle shadow-xl magnetic-hover">
-          ⚒️
-        </div>
-      </div>
-      <div className="absolute bottom-1/2 right-20 hidden xl:block animate-rotate-in animate-stagger-7 parallax-element">
-        <div className="w-10 h-10 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-sm animate-pulse-slow shadow-lg magnetic-hover">
-          🪵
         </div>
       </div>
 

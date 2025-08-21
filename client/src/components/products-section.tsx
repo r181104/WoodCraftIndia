@@ -86,8 +86,8 @@ export function ProductsSection() {
             {filteredProducts.map((product, index) => (
               <div 
                 key={product.id}
-                className="animate-on-scroll-scale card-hover"
-                style={{ transitionDelay: `${index * 0.08}s` }}
+                className="animate-on-scroll card-hover"
+                style={{ transitionDelay: `${index * 0.05}s` }}
               >
                 <ProductCard product={product} />
               </div>
