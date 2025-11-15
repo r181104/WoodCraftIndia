@@ -49,17 +49,20 @@ Visit the live website: [https://r181104.github.io/WoodCraftIndia/](https://r181
 ## 🎨 Design Features
 
 ### Color Scheme
+
 - **Primary**: Dark wood tones (#1a1611, #2d1f17)
 - **Secondary**: Cream and warm whites (#f5f1eb, #faf7f2)
 - **Accent**: Golden amber (#fbbf24, #f59e0b)
 - **Text**: Cream variations (#f5deb3, #deb887)
 
 ### Typography
+
 - **Headings**: Playfair Display (serif)
 - **Body**: Inter (sans-serif)
 - **Weights**: 300, 400, 500, 600, 700
 
 ### Sections
+
 1. **Hero Section** - Dark theme with animated elements
 2. **About Section** - Light cream background with company story
 3. **Products Section** - Dark theme with filterable gallery
@@ -71,6 +74,7 @@ Visit the live website: [https://r181104.github.io/WoodCraftIndia/](https://r181
 ### Option 1: Manual Deployment
 
 1. **Build the project:**
+
    ```bash
    npm run build
    ```
@@ -83,13 +87,14 @@ Visit the live website: [https://r181104.github.io/WoodCraftIndia/](https://r181
 ### Option 2: Using GitHub Actions (Recommended)
 
 1. **Create `.github/workflows/deploy.yml`:**
+
    ```yaml
    name: Deploy to GitHub Pages
-   
+
    on:
      push:
-       branches: [ main ]
-   
+       branches: [main]
+
    jobs:
      build-and-deploy:
        runs-on: ubuntu-latest
@@ -97,7 +102,7 @@ Visit the live website: [https://r181104.github.io/WoodCraftIndia/](https://r181
          - uses: actions/checkout@v3
          - uses: actions/setup-node@v3
            with:
-             node-version: '18'
+             node-version: "18"
          - run: npm install
          - run: npm run build
          - uses: peaceiris/actions-gh-pages@v3
@@ -127,17 +132,20 @@ The contact form uses **Formspree** for handling submissions. To set up your own
 ## 🔧 Local Development
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/r181104/WoodCraftIndia.git
    cd WoodCraftIndia
    ```
 
 2. **Install dependencies:**
+
    ```bash
-   npm install
+   npm install --legacy-peer-deps
    ```
 
 3. **Start development server:**
+
    ```bash
    npm run dev
    ```
@@ -182,3 +190,4 @@ For questions about this project, please open an issue on GitHub or contact thro
 ---
 
 **Built with ❤️ for traditional Indian woodworking artisans**
+
