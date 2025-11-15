@@ -151,7 +151,7 @@ The contact form uses **Formspree** for handling submissions. To set up your own
    ```
 
 4. **Open browser:**
-   Navigate to `http://localhost:5173`
+   Navigate to `http://0.0.0.0:5000`
 
 ## 📱 Browser Support
 
@@ -190,4 +190,3 @@ For questions about this project, please open an issue on GitHub or contact thro
 ---
 
 **Built with ❤️ for traditional Indian woodworking artisans**
-
